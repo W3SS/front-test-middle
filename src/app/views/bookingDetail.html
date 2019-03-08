@@ -1,0 +1,21 @@
+<div class="col-lg-3 col-md-3 col-sm-12" ng-repeat="item in vm._bookings track by $index">
+    <div class=""> 
+        <h4 class="text_layer">{{item.destination}}</h4>
+        <small class="d-flex flex-row-reverse">
+            <i class="text_layer">{{ item.outboundDate |'mediumDate}} - {{ item.inboundDate |'mediumDate}}</i>
+        </small>
+        <img ng-src="{{item.thumb}}" alt="">
+    </div>
+</div>
+
+<style>
+.backdrop {
+    z-index: initial;
+}
+
+.text_layer {
+    z-index: 2; 
+}
+
+
+</style>
