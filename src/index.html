@@ -15,35 +15,40 @@
     <!-- Styles, Fonts -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700" rel="stylesheet" type="text/css">
-
+    
+    
 	<base href="/">
 
 </head>
 
-<body class="body_backgroundColor">
+<body style="background-color: black;">
 
-    <div class="container" ng-controller="MainCtrl as ctrl">
-        <div class="row">
-            <span class="col-12">
-                <b>Upcoming</b>
+    <div class="container" ng-controller="MainCtrl as mainCtrl">
+        <div class="row"> 
+            <span class="col-12 row">
+                <h4 class="col-12 text-white text-uppercase lead">{{title}}</h4>
+                <p class="col-12 text-muted">Upcoming</p>
             </span> 
             <div class="col-12 row">
-                <booking-detail></booking-detail>
+                <div class="col-lg-3 col-md-6 col-sm-12 p-1" ng-repeat="item in flights track by $index">
+                    <div class="card p-1" ng-style="{'background-image':'url({{item.thumb}})'}"> 
+                        <div class="card-block card-item p-1">
+                            <span class="d-flex justify-content-between align-items-end mt-5 ">
+                                <span class="text-white font-weight-bold">{{item.destination}}</span>
+                                <small class="text-white">{{ item.outboundDate | date:'mediumDate'}} - {{ item.inboundDate | date:'mediumDate'}}</small>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <style src="style.css"></style>
 
-    <!-- Core -->
-    <script type="text/javascript" src="app/app.js"></script>
-    
 	<!-- Libs -->
 	<script type="text/javascript" src="../node_modules/angular/angular.min.js"></script>
-	
-	<!-- Controllers -->
-	<script type="text/javascript" src="app/controllers/bookingController.js"></script>
-
-	<!-- Services -->
-    <script type="text/javascript" src="app/services/bookingService.js"></script>
+	<script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-resource.js'></script>
+    <script type="text/javascript" src="app/app.js"></script>
     
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

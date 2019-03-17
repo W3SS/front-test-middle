@@ -12,6 +12,7 @@
     "@fortawesome/fontawesome-free": "^5.7.2",
     "angular": "^1.7.7",
     "angular-ui-router": "^1.0.22",
+    "axios": "^0.18.0",
     "browser-sync": "^2.26.3",
     "gulp": "^4.0.0"
   },

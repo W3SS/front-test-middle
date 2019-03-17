@@ -1,41 +1,21 @@
 (function () {
-    'use strict';
+	'use strict';
+	
+	var app = angular.module('app',['ngResource']);
+	
+	app.controller('MainCtrl', MainCtrl);
+	
+	app.factory("flights", function($resource) {
+		return $resource("https://5ba412108da2f20014654cf8.mockapi.io/api/v1/flights");
+	});
+	
+	function MainCtrl(flights, $scope) {
+		$scope.title = 'My Bookings';
+		flights.query(function(data) {
+			$scope.flights = data;
+		}, function(err) {
+			console.error("Error occured: ", err);
+		});
+    }
 
-    var app = angular.module('app');
-
-    app.controller('MainCtrl', mainCtrl);
-
-    mainCtrl.$inject = ['bookingService'];
-
-    function mainCtrl(bookingService) {
-            var vm = this;
-
-            vm.getBookings = async () => {
-                var promise = bookingService.getBooking();
-                
-                promise.then(
-                    function (result) {
-                        const data = await result.json();
-                        const bookings = data
-    
-                        let _bookings = []
-    
-                        for (let i in bookings) {
-                            if (bookings.lenght !== null) {
-                                _bookings.push({
-                                    destination: bookings[i].destination,
-                                    outboundDate: bookings[i].outboundDate,
-                                    inboundDate: bookings[i].inboundDate,
-                                    thumb: bookings[i].thumb
-                                })
-                            }
-                        }
-    
-                        return _bookings;
-                    },
-                    function (error) {
-                        console.log(error);
-                    });
-            };
-        }
 })();
